@@ -1082,6 +1082,9 @@ void int21()
         if(devinfo[0] == 0x80D3)
             suspend_keyboard();
 
+        fflush(handles[1] ? handles[1] : stdout);
+        check_screen();
+
         FILE *f = handles[0] ? handles[0] : stdin;
         int addr = cpuGetAddrDS(cpuGetDX());
         unsigned len = memory[addr], i = 2;
